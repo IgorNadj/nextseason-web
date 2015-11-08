@@ -1,0 +1,221 @@
+@import 'bourbon/bourbon';
+@import 'base/grid-settings';
+@import 'neat/neat';
+@import 'base/base';
+
+@import 'refills/button-group';
+@import 'refills/article-type-serif';
+@import 'refills/search-bar';
+
+
+
+$icon-star: '\f511';
+$icon-star-full: '\f512';
+
+$green: rgb(210, 254, 203);
+$blue: #CBEFFE;
+$logo-bg: #E6E6E6;
+$logo-bg-hover: #a9efff;
+
+
+@mixin icon-replace-text($icon) {
+	white-space: nowrap;
+	overflow: hidden;
+	visibility: hidden;
+	display: inline-block;
+	vertical-align: middle;
+	width: 1.2em;
+	margin-left: 0.2em;
+
+	&:before {
+		visibility: visible;
+		font-size: 1.2em;
+		@include icon($icon);
+	}
+}
+
+@mixin icon($icon) {
+	content: $icon;
+	font: normal 16px/1 'Genericons';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+header{
+	h1, .logo { display: inline-block; vertical-align: top; }
+	.logo { 
+		img {
+			width: 2em;
+			height: 2em;
+			border-radius: 2em;
+			background-color: $logo-bg;
+			border: 3px solid $logo-bg;
+			box-shadow: 0 0 1px 0 rgba(0,0,0,0.5);
+			margin-top: 0.1em; 
+			margin-right: 0.4em;
+
+
+			&:hover {
+				background-color: $logo-bg-hover;
+				border-color: $logo-bg-hover;
+				box-shadow: 0 0 2px 2px $logo-bg-hover; 
+			}
+
+			@media screen and (min-width: 600px) {
+				// same breakpoint as h1
+				width: 2.5em;
+				height: 2.5em;
+				border-radius: 2.5em;
+				margin-top: 0.2em; 
+				margin-right: 0.6em;
+
+			}
+		}
+	}
+
+}
+
+article {
+	@include outer-container;
+	padding: $base-spacing;
+	@include media($large-screen-up){
+		padding-right: 100px; // move left slightly, smaller than max witdth for readability
+	}
+	
+	h3 { text-transform: uppercase; }
+
+	.heyo-whats-this {
+		a { 
+			padding: 0.75em 1em; 
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.faves span {
+			&:after {
+				@include icon($icon-star);
+				margin-left: 0.3em;
+				margin-bottom: -.5em;
+				display: inline-block;
+				vertical-align: top;
+			}
+		}
+		
+	}
+
+	&.type-system-serif hr { width: auto; }
+
+	.about {
+		ul { @extend %default-ul; }
+	}
+
+	.search {
+		margin-top: $small-spacing;
+		margin-bottom: $base-spacing;
+	}
+
+	.global-messages {
+		padding: $small-spacing $base-spacing;
+		margin: $base-spacing 0;
+		font-style: italic;
+		background: $blue;
+		border: 1px solid rgba(0,0,0,0.2);
+		em {
+			font-weight: bold;
+		}
+	}
+
+	.content { 
+		@include outer-container;
+
+		.show {
+			@include span-columns(4);
+
+			margin: $small-spacing 0 0 0;
+			padding: $small-spacing;
+			outline: 1px solid rgba(0,0,0,0.1);
+			background-image: url('../img/show-bg-gradient.png');
+			background-size: 100% 100%;
+
+			@include media($large-screen-up) {
+				@include span-columns(6);
+				@include omega(2n);
+			}
+
+			white-space: nowrap;
+			.poster, .deets {
+				display: inline-block;
+				vertical-align: top;
+			}
+			.poster {
+				width: 30%;
+			}
+			.deets {
+				padding: $small-spacing; 
+
+				@include media($medium-screen-up){
+					padding: $base-spacing;
+				}
+
+				white-space: normal;
+				width: 70%;
+			
+				.season-number, .when-returns {
+					font-size: 1.15em;
+					font-weight: bold;
+				}
+
+				.when-returns {
+					white-space: nowrap;
+				}
+			}
+
+			&:not(:hover) {
+				.this-my-jam {
+					display: none;
+				}
+			}
+
+			.is-this-my-jam {
+				display: inline-block;
+
+				// in case this is alone on a line, don't take up too much space
+				margin-bottom: -$small-spacing; 
+				
+				a {
+					@include icon-replace-text($icon-star);
+					color: #666;
+
+					&:hover {
+						color: black;
+					}
+
+					&.remove {
+						@include icon-replace-text($icon-star-full);
+						color: #E6A31E;
+					}
+				}
+			}
+
+			.messages {
+				padding: 0.5em 1em;
+				margin-bottom: 1em;
+				border: 1px solid rgba(0,0,0,0.2);
+				background: $green;
+			}
+		}
+
+		.no-faves-info {
+			color: #666;
+			text-align: center;
+			font-style: italic;
+		}
+	}
+
+}
+
+.loading-indicator {
+	padding: $base-spacing;
+	text-align: center;
+	clear: both;
+}
