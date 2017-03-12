@@ -101,6 +101,7 @@ article {
 
 		.links {
 			display: none;
+			text-align: right;
 			@media screen and (min-width: 600px) {
 				display: block;
 			}

@@ -466,7 +466,8 @@ article {
     article .content table {
       table-layout: auto; }
     article .content .links {
-      display: none; }
+      display: none;
+      text-align: right; }
       @media screen and (min-width: 600px) {
         article .content .links {
           display: block; } }
