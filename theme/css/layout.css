@@ -1,10 +1,7 @@
-@charset "UTF-8";
 html {
   box-sizing: border-box; }
 
-*,
-*::after,
-*::before {
+*, *::after, *::before {
   box-sizing: inherit; }
 
 button, input[type="button"], input[type="reset"], input[type="submit"] {
@@ -26,11 +23,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   user-select: none;
   vertical-align: middle;
   white-space: nowrap; }
-  button:hover,
-  button:focus, input[type="button"]:hover,
-  input[type="button"]:focus, input[type="reset"]:hover,
-  input[type="reset"]:focus, input[type="submit"]:hover,
-  input[type="submit"]:focus {
+  button:hover, button:focus, input[type="button"]:hover, input[type="button"]:focus, input[type="reset"]:hover, input[type="reset"]:focus, input[type="submit"]:hover, input[type="submit"]:focus {
     background-color: #3964a2;
     color: #fff; }
   button:disabled, input[type="button"]:disabled, input[type="reset"]:disabled, input[type="submit"]:disabled {
@@ -177,9 +170,7 @@ a {
   color: #477dca;
   text-decoration: none;
   transition: color 150ms ease; }
-  a:active,
-  a:focus,
-  a:hover {
+  a:active, a:focus, a:hover {
     color: #355e98; }
 
 hr {
@@ -222,8 +213,7 @@ picture {
         border-right: 1px solid #eeeeee;
         border-top: 1px solid silver;
         width: auto; } }
-    .button-group label .button-group-item:focus,
-    .button-group label .button-group-item:hover {
+    .button-group label .button-group-item:focus, .button-group label .button-group-item:hover {
       background-color: #f7f7f7; }
   .button-group label:first-child .button-group-item {
     border-top-left-radius: 3px;
@@ -397,8 +387,7 @@ form.search-bar {
     form.search-bar button[type=submit]:hover:not(:disabled) {
       background-color: #578ad4;
       cursor: pointer; }
-    form.search-bar button[type=submit]:active:not(:disabled),
-    form.search-bar button[type=submit]:focus:not(:disabled) {
+    form.search-bar button[type=submit]:active:not(:disabled), form.search-bar button[type=submit]:focus:not(:disabled) {
       background-color: #3c71bb;
       cursor: pointer; }
     form.search-bar button[type=submit]:disabled {
@@ -408,30 +397,31 @@ form.search-bar {
       height: 12px;
       opacity: 0.7; }
 
-header h1, header .logo {
-  display: inline-block;
-  vertical-align: top; }
-
-header .logo img {
-  width: 2em;
-  height: 2em;
-  border-radius: 2em;
-  background-color: #E6E6E6;
-  border: 3px solid #E6E6E6;
-  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.5);
-  margin-top: 0.1em;
-  margin-right: 0.4em; }
-  header .logo img:hover {
-    background-color: #a9efff;
-    border-color: #a9efff;
-    box-shadow: 0 0 2px 2px #a9efff; }
-  @media screen and (min-width: 600px) {
-    header .logo img {
-      width: 2.5em;
-      height: 2.5em;
-      border-radius: 2.5em;
-      margin-top: 0.2em;
-      margin-right: 0.6em; } }
+header {
+  border-bottom: 3px solid #CBEFFE; }
+  header h1, header .logo {
+    display: inline-block;
+    vertical-align: top; }
+  header .logo img {
+    width: 2em;
+    height: 2em;
+    border-radius: 2em;
+    background-color: #E6E6E6;
+    border: 3px solid #E6E6E6;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.5);
+    margin-top: 0.1em;
+    margin-right: 0.4em; }
+    header .logo img:hover {
+      background-color: #a9efff;
+      border-color: #a9efff;
+      box-shadow: 0 0 2px 2px #a9efff; }
+    @media screen and (min-width: 600px) {
+      header .logo img {
+        width: 2.5em;
+        height: 2.5em;
+        border-radius: 2.5em;
+        margin-top: 0.2em;
+        margin-right: 0.6em; } }
 
 article {
   max-width: 1024px;
@@ -447,130 +437,39 @@ article {
       padding-right: 100px; } }
   article h3 {
     text-transform: uppercase; }
-  article .heyo-whats-this a {
-    padding: 0.75em 1em;
-    display: inline-block;
-    vertical-align: top; }
-  article .heyo-whats-this .faves span:after {
-    content: "";
-    font: normal 16px/1 "Genericons";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin-left: 0.3em;
-    margin-bottom: -.5em;
-    display: inline-block;
-    vertical-align: top; }
+  @media screen and (min-width: 600px) {
+    article .heyo-whats-this {
+      float: right;
+      margin-top: 1.3em; } }
   article.type-system-serif hr {
     width: auto; }
-  article .search {
-    margin-top: 0.75em;
-    margin-bottom: 1.5em; }
-  article .global-messages {
-    padding: 0.75em 1.5em;
-    margin: 1.5em 0;
-    font-style: italic;
-    background: #CBEFFE;
-    border: 1px solid rgba(0, 0, 0, 0.2); }
-    article .global-messages em {
-      font-weight: bold; }
+  article .about {
+    padding: 0.75em 0; }
   article .content {
     max-width: 1024px;
     margin-left: auto;
-    margin-right: auto; }
+    margin-right: auto;
+    margin-top: 2em; }
     article .content::after {
       clear: both;
       content: "";
       display: table; }
+    @media screen and (min-width: 600px) {
+      article .content {
+        margin-top: 4em; } }
     article .content .show {
-      float: left;
-      display: block;
-      margin-right: 6.66667%;
-      width: 100%;
-      margin: 0.75em 0 0 0;
-      padding: 0.75em;
-      outline: 1px solid rgba(0, 0, 0, 0.1);
-      background-image: url("../img/show-bg-gradient.png");
-      background-size: 100% 100%;
-      white-space: nowrap; }
-      article .content .show:last-child {
-        margin-right: 0; }
-      @media screen and (min-width: 900px) {
-        article .content .show {
-          float: left;
-          display: block;
-          margin-right: 2.12766%;
-          width: 48.93617%; }
-          article .content .show:last-child {
-            margin-right: 0; }
-          article .content .show:nth-child(2n) {
-            margin-right: 0; }
-          article .content .show:nth-child(2n+1) {
-            clear: left; } }
-      article .content .show .poster, article .content .show .deets {
-        display: inline-block;
-        vertical-align: top; }
-      article .content .show .poster {
-        width: 30%; }
-      article .content .show .deets {
-        padding: 0.75em;
-        white-space: normal;
-        width: 70%; }
-        @media screen and (min-width: 600px) {
-          article .content .show .deets {
-            padding: 1.5em; } }
-        article .content .show .deets .season-number, article .content .show .deets .when-returns {
-          font-size: 1.15em;
-          font-weight: bold; }
-        article .content .show .deets .when-returns {
-          white-space: nowrap; }
-      article .content .show:not(:hover) .this-my-jam {
-        display: none; }
-      article .content .show .is-this-my-jam {
-        display: inline-block;
-        margin-bottom: -0.75em; }
-        article .content .show .is-this-my-jam a {
-          white-space: nowrap;
-          overflow: hidden;
-          visibility: hidden;
-          display: inline-block;
-          vertical-align: middle;
-          width: 1.2em;
-          margin-left: 0.2em;
-          color: #666; }
-          article .content .show .is-this-my-jam a:before {
-            visibility: visible;
-            font-size: 1.2em;
-            content: "";
-            font: normal 16px/1 "Genericons";
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale; }
-          article .content .show .is-this-my-jam a:hover {
-            color: black; }
-          article .content .show .is-this-my-jam a.remove {
-            white-space: nowrap;
-            overflow: hidden;
-            visibility: hidden;
-            display: inline-block;
-            vertical-align: middle;
-            width: 1.2em;
-            margin-left: 0.2em;
-            color: #E6A31E; }
-            article .content .show .is-this-my-jam a.remove:before {
-              visibility: visible;
-              font-size: 1.2em;
-              content: "";
-              font: normal 16px/1 "Genericons";
-              -webkit-font-smoothing: antialiased;
-              -moz-osx-font-smoothing: grayscale; }
-      article .content .show .messages {
-        padding: 0.5em 1em;
-        margin-bottom: 1em;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        background: #d2fecb; }
-    article .content .no-faves-info {
-      color: #666;
-      text-align: center;
-      font-style: italic; }
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 0.75em; }
+      article .content .show .season-number, article .content .show .when-returns {
+        font-size: 1.15em;
+        font-weight: bold; }
+    article .content table {
+      table-layout: auto; }
+    article .content .links {
+      display: none; }
+      @media screen and (min-width: 600px) {
+        article .content .links {
+          display: block; } }
 
 .loading-indicator {
   padding: 1.5em;

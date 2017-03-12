@@ -1,1 +1,1 @@
-var API_URL = '//nextseason-api.bigoaf.co.nz/api';
+var DATA_URL = 'https://nextseason-parser.s3-us-west-2.amazonaws.com/exports/export.json';

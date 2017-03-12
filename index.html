@@ -23,12 +23,11 @@
 		  ga('send', 'pageview');
 		
 		</script>
+		<script src="https://momentjs.com/downloads/moment.min.js"></script>
 
 		<link href='http://fonts.googleapis.com/css?family=Lusitana:400,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700italic,700,800,800italic' rel='stylesheet' type='text/css'>
-		<link href="lib/jquery/jquery-ui.min.css" rel="stylesheet"> 
-		<link href="lib/genericons/genericons.css" rel="stylesheet"> 
 		<link rel="stylesheet" type="text/css" href="theme/css/layout.css">
 		
 		
@@ -43,93 +42,60 @@
 						<img src="../theme/logo.svg" alt="logo" />
 					</a> -->
 					<h1>Next Season</h1>
+					<div class="heyo-whats-this">
+						<a href="" ng-click="showAbout = !showAbout">About</a>
+					</div>
 				</header>
 
-				<div class="heyo-whats-this">
-					<div class="button-group toggle-show-popular">
-						<label class="popular">
-							<input type="radio" name="button-group" value="popular" ng-model="view" >
-							<span class="button-group-item">Popular Shows</span>
-						</label>
-						<!-- <label class="all">
-							<input type="radio" name="button-group" value="all" ng-model="view">
-							<span class="button-group-item">All</span>
-						</label> -->
-						<label class="faves">
-							<input type="radio" name="button-group" value="faves" ng-model="view">
-							<span class="button-group-item">My Shows</span>
-						</label>
-					</div>
-					<a href="" ng-click="showAbout = !showAbout">About</a>
-				</div>
+				
 
 				<div class="about" ng-if="showAbout">
-					<hr/>
-					<h2>About</h2>
 					<p>Next Season is a little website which tells you when your favourite shows are returning.</p>
-					<p>Star some shows and then bookmark to save for later!</p>
 					<p>
 						<em>Project links:</em>
 						<ul class="default">
-							<li><a href="https://github.com/IgorNadj/nextseason-api">API on github</a></li>
+							<li><a href="https://github.com/IgorNadj/nextseason-parser">Parser on github</a></li>
 							<li><a href="https://github.com/IgorNadj/nextseason-web">This website on github</a></li>
 						</ul>
 					</p>
 					<hr/>
 				</div>
-
 				
-
-				<div class="search">
-					<form class="search-bar" role="search" ng-submit="searchFormSubmit($event)">
-						<input type="search" name="autocomplete" placeholder="Search" autocomplete-shows />
-						<button type="submit">
-							<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
-						</button>
-					</form>
+				<div class="content"">
+					<table>
+						<tbody>
+							<tr class='show' ng-repeat="show in shows | orderBy: 'name'">
+								<td>
+									<span class="show-name">{{show.name}}</span>
+								</td>
+								<td>
+									<div class="info">
+										Season 
+										<span class="season-number">{{show.season_number}}</span>
+										<span ng-if="show.returnsSoon">
+											returns 
+											<span class="when-returns">
+												{{show.earliestReleaseDateAbsoluteString}}
+											</span>
+										</span>
+										<span ng-if="!show.returnsSoon" title="{{show.earliestReleaseDateAbsoluteString}}">
+											returns in 
+											<span class="when-returns">
+												{{show.earliestReleaseDateRelativeString}}
+											</span>
+										</span>
+									</div>
+								</td>
+								<td>
+									<div class="links">
+										<a class="show-link" href="https://www.themoviedb.org/tv/{{show.tmdbId}}">tmdb</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
-
-				<div class="global-messages" ng-if="globalMessages">
-					<span ng-if="globalMessages.noUpcomingSeasons">Sorry, I don't know when / if <em>{{faveShowNameToLoad}}</em> is coming back :(</span>
-					<span ng-if="globalMessages.loadedFave">Added <em>{{faveShowNameToLoad}}</em></span> 
-				</div>
-
-				
-				
-				<div class="content" infinite-scroll="scrolledToBottom()">			
-					<div class='show' ng-repeat="row in rows[view] | orderBy : orderViewBy[view]" image-background-color>
-						<div class="messages" ng-if="row.messages">
-							<span ng-if="row.messages.addedToFaves">Added to <a href="" ng-click="goToFaves()">My Shows</a></span>
-							<span ng-if="row.messages.removedFromFaves">Removed from <a href="" ng-click="goToFaves()">My Shows</a></span>
-						</div>
-						<div class="poster">
-							<img ng-src="{{row.thumb_url}}" />
-						</div>
-						<div class="deets">
-							<h2>
-								<a class="show-name" href="{{row.tmdb_link}}" ng-if="row.tmdb_link">{{row.show_name}}</a>
-								<span class="show-name" ng-if="!row.tmdb_link">{{row.show_name}}</span>
-								<div class="is-this-my-jam" ng-class="{ yes: faveShowIds[row.show_id], no: !faveShowIds[row.show_id] }">
-									<a href="" class="add" ng-click="addShowToFaves(row)" ng-if="!faveShowIds[row.show_id]">Add to my shows</a>
-									<a href="" class="remove" ng-click="removeShowFromFaves(row)" ng-if="faveShowIds[row.show_id]">Remove from my shows</a>
-								</div>
-							</h2>
-							<div class="info">
-								Season 
-								<span class="season-number">{{row.season_number}}</span>
-								returns 
-								<span class="when-returns">{{row.release_date_raw}}</span>
-							</div>
-						</div>
-					</div>
-					<div class="no-faves-info" ng-if="view == 'faves' && rows[view].length === 0">
-						Star some shows and they will appear here
-					</div>
-					<div class="loading-indicator" ng-if="loading[view]">
-						<img src="theme/img/ajax-loader.gif" />
-					</div>
-				</div>
-			</section>
+			</article>
 
 		</main>
 		<footer></footer>

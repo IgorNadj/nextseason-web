@@ -9,39 +9,15 @@
 
 
 
-$icon-star: '\f511';
-$icon-star-full: '\f512';
-
 $green: rgb(210, 254, 203);
 $blue: #CBEFFE;
 $logo-bg: #E6E6E6;
 $logo-bg-hover: #a9efff;
 
 
-@mixin icon-replace-text($icon) {
-	white-space: nowrap;
-	overflow: hidden;
-	visibility: hidden;
-	display: inline-block;
-	vertical-align: middle;
-	width: 1.2em;
-	margin-left: 0.2em;
-
-	&:before {
-		visibility: visible;
-		font-size: 1.2em;
-		@include icon($icon);
-	}
-}
-
-@mixin icon($icon) {
-	content: $icon;
-	font: normal 16px/1 'Genericons';
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
 
 header{
+	border-bottom: 3px solid $blue;
 	h1, .logo { display: inline-block; vertical-align: top; }
 	.logo { 
 		img {
@@ -85,131 +61,51 @@ article {
 	h3 { text-transform: uppercase; }
 
 	.heyo-whats-this {
-		a { 
-			padding: 0.75em 1em; 
-			display: inline-block;
-			vertical-align: top;
+		@media screen and (min-width: 600px) {
+			float: right;
+			margin-top: 1.3em;
 		}
-
-		.faves span {
-			&:after {
-				@include icon($icon-star);
-				margin-left: 0.3em;
-				margin-bottom: -.5em;
-				display: inline-block;
-				vertical-align: top;
-			}
-		}
-		
 	}
+
+
 
 	&.type-system-serif hr { width: auto; }
 
 	.about {
+		padding: $small-spacing 0;
 		ul { @extend %default-ul; }
-	}
-
-	.search {
-		margin-top: $small-spacing;
-		margin-bottom: $base-spacing;
-	}
-
-	.global-messages {
-		padding: $small-spacing $base-spacing;
-		margin: $base-spacing 0;
-		font-style: italic;
-		background: $blue;
-		border: 1px solid rgba(0,0,0,0.2);
-		em {
-			font-weight: bold;
-		}
 	}
 
 	.content { 
 		@include outer-container;
+		margin-top: 2em;
+		@media screen and (min-width: 600px) {
+			margin-top: 4em;
+		}
 
 		.show {
-			@include span-columns(4);
 
-			margin: $small-spacing 0 0 0;
-			padding: $small-spacing;
-			outline: 1px solid rgba(0,0,0,0.1);
-			background-image: url('../img/show-bg-gradient.png');
-			background-size: 100% 100%;
+			border-bottom: 1px solid rgba(0,0,0,0.1);
 
-			@include media($large-screen-up) {
-				@include span-columns(6);
-				@include omega(2n);
-			}
+			padding: $small-spacing; 
 
-			white-space: nowrap;
-			.poster, .deets {
-				display: inline-block;
-				vertical-align: top;
-			}
-			.poster {
-				width: 30%;
-			}
-			.deets {
-				padding: $small-spacing; 
-
-				@include media($medium-screen-up){
-					padding: $base-spacing;
-				}
-
-				white-space: normal;
-				width: 70%;
-			
-				.season-number, .when-returns {
-					font-size: 1.15em;
-					font-weight: bold;
-				}
-
-				.when-returns {
-					white-space: nowrap;
-				}
-			}
-
-			&:not(:hover) {
-				.this-my-jam {
-					display: none;
-				}
-			}
-
-			.is-this-my-jam {
-				display: inline-block;
-
-				// in case this is alone on a line, don't take up too much space
-				margin-bottom: -$small-spacing; 
-				
-				a {
-					@include icon-replace-text($icon-star);
-					color: #666;
-
-					&:hover {
-						color: black;
-					}
-
-					&.remove {
-						@include icon-replace-text($icon-star-full);
-						color: #E6A31E;
-					}
-				}
-			}
-
-			.messages {
-				padding: 0.5em 1em;
-				margin-bottom: 1em;
-				border: 1px solid rgba(0,0,0,0.2);
-				background: $green;
+			.season-number, .when-returns {
+				font-size: 1.15em;
+				font-weight: bold;
 			}
 		}
 
-		.no-faves-info {
-			color: #666;
-			text-align: center;
-			font-style: italic;
+		table {
+			table-layout: auto;
 		}
+
+		.links {
+			display: none;
+			@media screen and (min-width: 600px) {
+				display: block;
+			}
+		}
+
 	}
 
 }
