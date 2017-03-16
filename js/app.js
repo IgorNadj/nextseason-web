@@ -6,6 +6,7 @@ angular
 	.controller('upcoming', ['$scope', '$http', function($scope, $http){
 		$scope.shows = [];
 		$http({ url: DATA_URL }).then(function(response){
+			$scope.exportTime = moment.unix(response.data.exportTime).format('MMMM Do YYYY, h:mm:ss a');
 			var shows = response.data.shows;
 			for (var i in shows) {
 				var show = shows[i];
