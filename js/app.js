@@ -8,6 +8,7 @@ angular
 		$http({ url: DATA_URL }).then(function(response){
 			$scope.exportTime = moment.unix(response.data.exportTime).format('MMMM Do YYYY, h:mm:ss a');
 			var shows = response.data.shows;
+			var displayShows = [];
 			for (var i in shows) {
 				var show = shows[i];
 				var d = moment.unix(show.earliest_release_date_timestamp);
@@ -24,8 +25,9 @@ angular
 				}
 				var returnsSoonLimit = moment().add(2, 'days');
 				show.returnsSoon = returnsSoonLimit.diff(d) > 0;
+				displayShows.push(show);
 			}
-			$scope.shows = shows;
+			$scope.shows = displayShows;
 		});
 	}])
 })();
