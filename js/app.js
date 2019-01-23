@@ -12,11 +12,6 @@ angular
 			for (var i in shows) {
 				var show = shows[i];
 				var d = moment.unix(show.earliest_release_date_timestamp);
-				var now = moment();
-				if (d.diff(now) < 0) {
-					// already released
-					continue;
-				}
 				show.earliestReleaseDateAbsoluteString = d.format("MMMM Do YYYY");
 				show.earliestReleaseDateRelativeString = d.fromNow();
 				if (show.earliestReleaseDateRelativeString.indexOf('in ') === 0) {
