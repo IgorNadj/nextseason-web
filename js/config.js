@@ -1,1 +1,1 @@
-var DATA_URL = 'https://nextseason-parser.s3-us-west-2.amazonaws.com/exports/export.json';
+var DATA_URL = 'https://igornadj.io/dev/nextseason-web/export.json';
