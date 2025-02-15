@@ -1,1 +1,1 @@
-var DATA_URL = 'https://igornadj.io/dev/nextseason-web/export.json';
+var DATA_URL = '/export.json';
