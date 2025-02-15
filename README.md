@@ -4,5 +4,5 @@ See also: the back end - https://github.com/IgorNadj/nextseason-parser
 
 ### 
 Build:
-  docker build . -t igornadj/nextseason
-  docker push igornadj/nextseason
+  - docker buildx build --platform linux/amd64,linux/arm64 . -t igornadj/nextseason
+  - docker push igornadj/nextseason
